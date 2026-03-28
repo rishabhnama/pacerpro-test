@@ -1,0 +1,8 @@
+_source="production/app"
+|json field=_raw "path" as path
+|json field= _raw "response_time" as response_time
+|json field= _raw "status" as status
+| where (path = "/api/data") 
+|where num(response_time)>3
+| count as slow_requests 
+
